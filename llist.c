@@ -13,12 +13,48 @@ struct node *llist_delete_head(struct node **head)
   // remove a node from the head of the list and return a pointer
   // to it. return NULL if list is empty. this function will not
   // free the node; just uncouples it from the list
+  if(*head == NULL)
+  {
+    return NULL;
+  }
+  else 
+  {
+    // store the head in a temp value
+    struct node *temp = *head;
+    // change head pointer to next node
+    *head = (*head)->next;
+    // return the temp
+    return temp;
+  }
 }
 
 void llist_insert_tail(struct node **head, struct node *n)
 {
   // insert node n at the tail of the list. this node should have
   // previously been allocated with node_alloc()
+
+  // if the list is empty then this new node is the head
+
+  // structure help from 
+  // https://www.geeksforgeeks.org/linked-list-set-2-inserting-a-node/
+  if (*head == NULL)
+  {
+    *head = n;
+  }
+
+  // we make a new node
+  else
+  {
+    struct node *tail_node = *head;
+
+    // traverse until last node
+    while (tail_node->next != NULL)
+    {
+      tail_node = tail_node->next;
+    }
+    // change the next of the last node
+    tail_node->next = n;
+  }
 }
 
 void llist_print(struct node *head)
