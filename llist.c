@@ -51,7 +51,7 @@ int main(int argc, char** argv)
   struct node *head = NULL;
 
   // for loop checking each individual argv for a match to
-  // each function
+  // each function and then executing each function
 
   for(int position = 1; position < argc; position++)
   {

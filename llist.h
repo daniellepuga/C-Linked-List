@@ -1,4 +1,7 @@
 // llist.h
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 #ifndef LLIST_H
 #define LLIST_H
