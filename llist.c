@@ -4,6 +4,8 @@ void llist_insert_head(struct node **head, struct node *n)
 {
   // insert node n at the head of the list. this node should have
   // previously allocated with node_alloc()
+  n->next = *head;
+  *head = n;
 }
 
 struct node *llist_delete_head(struct node **head)
@@ -87,29 +89,29 @@ int main(int argc, char** argv)
       int val = atoi(argv[++position]);
       struct node *inserted_node = node_alloc(val);
       llist_insert_head(&head, inserted_node);
-			printf("%s\n", "ih");
+			// printf("%s\n", "ih");
     }
     else if(strcmp(argv[position], "it") == 0)
     {
       int val = atoi(argv[++position]);
       struct node *inserted_node = node_alloc(val);
       llist_insert_tail(&head, inserted_node);
-			printf("%s\n", "ih");
+			// printf("%s\n", "ih");
     }
     else if(strcmp(argv[position], "dh") == 0)
     {
       llist_delete_head(&head);
-			printf("%s\n", "dh");
+			// printf("%s\n", "dh");
     }
     else if(strcmp(argv[position], "f") == 0)
     {
       llist_free(&head);
-			printf("%s\n", "f");
+			// printf("%s\n", "f");
     }
     else if(strcmp(argv[position], "p") == 0)
     {
       llist_print(head);
-			printf("%s\n", "p");
+			// printf("%s\n", "p");
     }
     else{
 
