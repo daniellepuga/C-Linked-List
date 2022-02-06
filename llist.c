@@ -27,6 +27,29 @@ void llist_print(struct node *head)
   // if the list is empty, the string
   // [empty]
   // (including square brackets), should be printed
+
+  // https://www.geeksforgeeks.org/doubly-linked-list/ used for help on
+  // how to set up a print function with pointers.
+  if(head == NULL)
+  {
+    printf("[empty]");
+  }
+  else 
+  {
+    // we need this statement since should not have a -> in front
+    printf("%d", head->value);
+
+    // and then update pointer
+    struct node *next_node = head->next;
+
+    // then loop with -> in front of values we want to display
+    while(next_node != NULL)
+    {
+      printf(" -> %d", next_node->value);
+      next_node = next_node->next;
+    }
+  }
+  printf("\n");
 }
 
 void llist_free(struct node **head)
@@ -37,12 +60,17 @@ void llist_free(struct node **head)
 
 struct node *node_alloc(int value)
 {
-  // allocate a new struct node with value 3490 and a next of NULL
+  // allocate a new struct node with value passed in and a next of NULL
+  struct node *inserted_node = malloc(sizeof(struct node));
+  inserted_node->value = value;
+  inserted_node->next = NULL;
+  return inserted_node;
 }
 
 void node_free(struct node *n)
 {
-  // free a node previously allocated with node_alloc().
+  // free node passed in
+  free(n);
 }
 
 int main(int argc, char** argv)
@@ -52,21 +80,20 @@ int main(int argc, char** argv)
 
   // for loop checking each individual argv for a match to
   // each function and then executing each function
-
   for(int position = 1; position < argc; position++)
   {
     if(strcmp(argv[position], "ih") == 0)
     {
       int val = atoi(argv[++position]);
-      struct node *new_node = node_alloc(val);
-      llist_insert_head(&head, new_node);
+      struct node *inserted_node = node_alloc(val);
+      llist_insert_head(&head, inserted_node);
 			printf("%s\n", "ih");
     }
     else if(strcmp(argv[position], "it") == 0)
     {
       int val = atoi(argv[++position]);
-      struct node *new_node = node_alloc(val);
-      llist_insert_tail(&head, new_node);
+      struct node *inserted_node = node_alloc(val);
+      llist_insert_tail(&head, inserted_node);
 			printf("%s\n", "ih");
     }
     else if(strcmp(argv[position], "dh") == 0)
@@ -83,6 +110,9 @@ int main(int argc, char** argv)
     {
       llist_print(head);
 			printf("%s\n", "p");
+    }
+    else{
+
     }
 
   }
