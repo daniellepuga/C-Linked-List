@@ -44,3 +44,46 @@ void node_free(struct node *n)
 {
   // free a node previously allocated with node_alloc().
 }
+
+int main(int argc, char** argv)
+{
+  // initialize head of new linked list as NULL
+  struct node *head = NULL;
+
+  // for loop checking each individual argv for a match to
+  // each function
+
+  for(int position = 1; position < argc; position++)
+  {
+    if(strcmp(argv[position], "ih") == 0)
+    {
+      int val = atoi(argv[++position]);
+      struct node *new_node = node_alloc(val);
+      llist_insert_head(&head, new_node);
+			printf("%s\n", "ih");
+    }
+    else if(strcmp(argv[position], "it") == 0)
+    {
+      int val = atoi(argv[++position]);
+      struct node *new_node = node_alloc(val);
+      llist_insert_tail(&head, new_node);
+			printf("%s\n", "ih");
+    }
+    else if(strcmp(argv[position], "dh") == 0)
+    {
+      llist_delete_head(&head);
+			printf("%s\n", "dh");
+    }
+    else if(strcmp(argv[position], "f") == 0)
+    {
+      llist_free(&head);
+			printf("%s\n", "f");
+    }
+    else if(strcmp(argv[position], "p") == 0)
+    {
+      llist_print(head);
+			printf("%s\n", "p");
+    }
+
+  }
+}
