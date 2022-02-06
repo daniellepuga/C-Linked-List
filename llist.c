@@ -1,5 +1,45 @@
 #include "llist.h"
 
+int main(int argc, char** argv)
+{
+  // initialize head of new linked list as NULL
+  struct node *head = NULL;
+
+  // for loop checking each individual argv for a match to
+  // each function and then executing each function
+  for(int position = 1; position < argc; position++)
+  {
+    if(strcmp(argv[position], "ih") == 0)
+    {
+      int val = atoi(argv[++position]);
+      struct node *inserted_node = node_alloc(val);
+      llist_insert_head(&head, inserted_node);
+    }
+    else if(strcmp(argv[position], "it") == 0)
+    {
+      int val = atoi(argv[++position]);
+      struct node *inserted_node = node_alloc(val);
+      llist_insert_tail(&head, inserted_node);
+    }
+    else if(strcmp(argv[position], "dh") == 0)
+    {
+      llist_delete_head(&head);
+    }
+    else if(strcmp(argv[position], "f") == 0)
+    {
+      llist_free(&head);
+    }
+    else if(strcmp(argv[position], "p") == 0)
+    {
+      llist_print(head);
+    }
+    else{
+      printf("please enter one of the following commands followed by numeric values.\n 'ih', 'it', 'dh', 'f', 'p'\n");
+      exit(0);
+    }
+  }
+}
+
 void llist_insert_head(struct node **head, struct node *n)
 {
   // insert node n at the head of the list. this node should have
@@ -133,44 +173,4 @@ void node_free(struct node *n)
 {
   // free node passed in
   free(n);
-}
-
-int main(int argc, char** argv)
-{
-  // initialize head of new linked list as NULL
-  struct node *head = NULL;
-
-  // for loop checking each individual argv for a match to
-  // each function and then executing each function
-  for(int position = 1; position < argc; position++)
-  {
-    if(strcmp(argv[position], "ih") == 0)
-    {
-      int val = atoi(argv[++position]);
-      struct node *inserted_node = node_alloc(val);
-      llist_insert_head(&head, inserted_node);
-    }
-    else if(strcmp(argv[position], "it") == 0)
-    {
-      int val = atoi(argv[++position]);
-      struct node *inserted_node = node_alloc(val);
-      llist_insert_tail(&head, inserted_node);
-    }
-    else if(strcmp(argv[position], "dh") == 0)
-    {
-      llist_delete_head(&head);
-    }
-    else if(strcmp(argv[position], "f") == 0)
-    {
-      llist_free(&head);
-    }
-    else if(strcmp(argv[position], "p") == 0)
-    {
-      llist_print(head);
-    }
-    else{
-
-    }
-
-  }
 }
