@@ -37,7 +37,7 @@ void llist_insert_tail(struct node **head, struct node *n)
 
   // structure help from 
   // https://www.geeksforgeeks.org/linked-list-set-2-inserting-a-node/
-  if (*head == NULL)
+  if(*head == NULL)
   {
     *head = n;
   }
@@ -92,7 +92,30 @@ void llist_print(struct node *head)
 void llist_free(struct node **head)
 {
  // call node_free() for every node in the list. head will be
- // sent to NULL
+ // sent to NULL. if the list is free then our job is already done!
+ // used structure similar to one found in above references to 
+ // delete all the nodes.
+
+  if(*head == NULL)
+  {
+    return;
+  }
+  else 
+  {
+    // get to the real head
+    struct node *current_node = *head;
+    struct node *next_node = current_node->next;
+
+    // loop through all nodes and free each one
+    while(next_node != NULL)
+    {
+      next_node = current_node->next;
+      free(current_node);
+      current_node = next_node;
+    }
+    // dereference head to effect the real head back in the caller
+    *head = NULL;
+  }
 }
 
 struct node *node_alloc(int value)
