@@ -25,7 +25,6 @@ void llist_print(struct node *head)
 {
   // prints a list to standard output in this form:
   // 1 -> 12 -> 3490 -> 7
-  // with no trailing or leading spaces on the line. 
   // if the list is empty, the string
   // [empty]
   // (including square brackets), should be printed
@@ -64,7 +63,9 @@ struct node *node_alloc(int value)
 {
   // allocate a new struct node with value passed in and a next of NULL
   struct node *inserted_node = malloc(sizeof(struct node));
+  // adding value to our newly inserted node
   inserted_node->value = value;
+  // making the next value NULL by default
   inserted_node->next = NULL;
   return inserted_node;
 }
@@ -89,29 +90,24 @@ int main(int argc, char** argv)
       int val = atoi(argv[++position]);
       struct node *inserted_node = node_alloc(val);
       llist_insert_head(&head, inserted_node);
-			// printf("%s\n", "ih");
     }
     else if(strcmp(argv[position], "it") == 0)
     {
       int val = atoi(argv[++position]);
       struct node *inserted_node = node_alloc(val);
       llist_insert_tail(&head, inserted_node);
-			// printf("%s\n", "ih");
     }
     else if(strcmp(argv[position], "dh") == 0)
     {
       llist_delete_head(&head);
-			// printf("%s\n", "dh");
     }
     else if(strcmp(argv[position], "f") == 0)
     {
       llist_free(&head);
-			// printf("%s\n", "f");
     }
     else if(strcmp(argv[position], "p") == 0)
     {
       llist_print(head);
-			// printf("%s\n", "p");
     }
     else{
 
