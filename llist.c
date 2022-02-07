@@ -133,7 +133,6 @@ void llist_free(struct node **head)
 {
  // call node_free() for every node in the list. head will be
  // sent to NULL. if the list is free then our job is already done!
- // used structure similar to one found in above references to 
  // delete all the nodes.
 
   if(*head == NULL)
